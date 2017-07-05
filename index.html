@@ -7,19 +7,41 @@
 <script src="jquery.js"></script>
   <body>
   <h2>Current temp</h2>
+  <p id="temp">20</p>
   <button id='increase'>Increase</button>
   <button id='decrease'>Decrease</button>
   <button id='power_saving'>Power saving</button>
   <button id='reset'>Reset</button>
   <script>
+  $( document ).ready(function() {
+    thermostat = new Thermostat();
 
-      $( document ).ready(function() {
-          $( "#increase" ).click(function( event ) {
-              // alert( "The link will no longer take you to jquery.com" );
-              event.preventDefault();
-          });
-      });
+    $( "#temp" ).html(thermostat.temp)
 
-      </script>
+    $( "#increase" ).click(function( event ) {
+      thermostat.increase();
+      updateTemp();
+    });
+
+    $( "#decrease" ).click(function ( event ) {
+      thermostat.decrease();
+      updateTemp();
+    })
+
+    $( "#power_saving" ).click(function( event ) {
+      thermostat.togglePowerSave();
+      console.log(thermostat.powerSave);
+    })
+
+    $( "#reset" ).click(function( event ) {
+      thermostat.reset();
+      updateTemp();
+    })
+
+    function updateTemp() {
+      $( "#temp" ).html(thermostat.temp)
+    }
+  });
+  </script>
   </body>
 </html>
