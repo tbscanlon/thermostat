@@ -28,6 +28,13 @@ describe("Thermostat", function() {
       thermostat.increase();
       expect(thermostat.temp).toEqual(21);
     });
+
+    it("throws an error if temperature is at or above the max", function () {
+      for (var i = 20; i < 25; i++) {
+        thermostat.increase();
+      }
+      expect(function () { thermostat.increase() }).toThrowError("Temperature too high");
+    });
   });
 
   describe("#decrease", function () {
@@ -45,7 +52,7 @@ describe("Thermostat", function() {
   });
 
   describe("#togglePowerSave", function () {
-    describe("#turning off", function () {
+    describe("turning off", function () {
 
       beforeEach(function() {
         thermostat.togglePowerSave();
@@ -59,7 +66,7 @@ describe("Thermostat", function() {
       });
     });
 
-    describe("#turning on", function () {
+    describe("turning on", function () {
 
       beforeEach(function() {
         thermostat.togglePowerSave();
@@ -74,6 +81,19 @@ describe("Thermostat", function() {
       it("sets max temperature to 25", function () {
         expect(thermostat.max).toEqual(25);
       });
+    });
+  });
+
+  describe("#reset", function () {
+    beforeEach(function () {
+      for (var i = 20; i > 15; i--) {
+        thermostat.decrease();
+      }
+    });
+
+    it("changes the temperature to its default value", function () {
+      thermostat.reset();
+      expect(thermostat.temp).toEqual(20);
     });
   });
 });

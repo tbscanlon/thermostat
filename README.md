@@ -29,4 +29,8 @@ I would like the max temperature to be fixed at 25 degrees when power saving is 
 As a user,
 So that I can get VERY WARM if I want to,
 I would like the max temperature to be increased to 32 degrees when power saving is off.
+
+As a user,
+So that I can quickly change the temperature to its default,
+I would like to have a reset function on my thermostat.
 ```
