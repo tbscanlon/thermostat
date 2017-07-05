@@ -13,6 +13,14 @@ describe("Thermostat", function() {
     it("has a minimum temperature", function () {
       expect(thermostat.min).toEqual(10);
     });
+
+    it("has powerSave switched on as default", function () {
+      expect(thermostat.powerSave).toBeTruthy();
+    });
+
+    it("has a maximum temperature", function () {
+      expect(thermostat.max).toEqual(25);
+    });
   });
 
   describe("#increase", function() {
@@ -33,6 +41,39 @@ describe("Thermostat", function() {
         thermostat.decrease();
       }
       expect(function () { thermostat.decrease() }).toThrowError("Temperature too low");
+    });
+  });
+
+  describe("#togglePowerSave", function () {
+    describe("#turning off", function () {
+
+      beforeEach(function() {
+        thermostat.togglePowerSave();
+      });
+
+      it("sets powerSave to false", function () {
+        expect(thermostat.powerSave).toBeFalsy();
+      });
+      it("sets max temperature to 32", function () {
+        expect(thermostat.max).toEqual(32);
+      });
+    });
+
+    describe("#turning on", function () {
+
+      beforeEach(function() {
+        thermostat.togglePowerSave();
+        thermostat.togglePowerSave();
+      });
+
+      it("sets powerSave to true", function () {
+        thermostat.togglePowerSave();
+        thermostat.togglePowerSave();
+        expect(thermostat.powerSave).toBeTruthy();
+      });
+      it("sets max temperature to 25", function () {
+        expect(thermostat.max).toEqual(25);
+      });
     });
   });
 });
