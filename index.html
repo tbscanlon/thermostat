@@ -4,12 +4,22 @@
     <h1>Thermostat</h1>
   </head>
 <script src="src/thermostat.js"></script>
+<script src="jquery.js"></script>
   <body>
   <h2>Current temp</h2>
   <button id='increase'>Increase</button>
   <button id='decrease'>Decrease</button>
   <button id='power_saving'>Power saving</button>
   <button id='reset'>Reset</button>
+  <script>
 
+      $( document ).ready(function() {
+          $( "#increase" ).click(function( event ) {
+              // alert( "The link will no longer take you to jquery.com" );
+              event.preventDefault();
+          });
+      });
+
+      </script>
   </body>
 </html>
