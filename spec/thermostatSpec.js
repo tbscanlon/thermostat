@@ -96,4 +96,37 @@ describe("Thermostat", function() {
       expect(thermostat.temp).toEqual(20);
     });
   });
+
+  describe("#usage", function () {
+    describe("Low Usage", function () {
+      beforeEach(function () {
+        for (var i = 20; i > 17; i--) {
+          thermostat.decrease();
+        }
+      });
+
+      it("Reports low usage when temp is under 18 degrees", function () {
+        expect(thermostat.usage()).toEqual("low-usage");
+      });
+    });
+
+    describe("Medium Usage", function () {
+      it("Reports medium usage when temp is between 18-25 degrees", function () {
+        expect(thermostat.usage()).toEqual("medium-usage");
+      });
+    });
+
+    describe("High Usage", function () {
+      beforeEach(function () {
+        thermostat.togglePowerSave();
+        for (var i = 20; i < 26; i++) {
+          thermostat.increase();
+        }
+      });
+
+      it("Reports high usage when temp is over 25 degrees", function () {
+        expect(thermostat.usage()).toEqual("high-usage");
+      });
+    });
+  });
 });
