@@ -1,61 +1,38 @@
 <html>
-<!-- <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"/> -->
   <head>
-    <h1>Thermostat</h1>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <script src="src/thermostat.js"></script>
+    <script src="src/jquery.js"></script>
+    <script type="text/javascript" src="src/thermostatInterface.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/thermostat.css">
   </head>
-<script src="src/thermostat.js"></script>
-<script src="jquery.js"></script>
+
   <body>
-  <h2>Current temp</h2>
-  <p id="temp">20</p>
-  <button id='increase'>Increase</button>
-  <button id='decrease'>Decrease</button>
-  <button id='power_saving'>Power saving</button>
-  <button id='reset'>Reset</button>
-  <button id='usage_display'> </button>
-  <script>
-  $( document ).ready(function() {
-    thermostat = new Thermostat();
+    <div class="container-fluid text-center">
+      <div class="row">
+        <div class="col-md-12">
+          <h1>Thermostat</h1>
+        </div>
+      </div>
 
-    $( "#temp" ).html(thermostat.temp)
+      <div class="row">
+        <div class="col-md-8">
+          <h2>Current temp</h2>
+          <p id="temp">20</p>
+        </div>
 
-    $( "#increase" ).click(function( event ) {
-      thermostat.increase();
-      updateTemp();
-    });
-
-    $( "#decrease" ).click(function ( event ) {
-      thermostat.decrease();
-      updateTemp();
-    })
-
-    $( "#power_saving" ).click(function( event ) {
-      thermostat.togglePowerSave();
-      console.log(thermostat.powerSave);
-    })
-
-    $( "#reset" ).click(function( event ) {
-      thermostat.reset();
-      updateTemp();
-    })
-
-    function updateTemp() {
-      $( "#temp" ).html(thermostat.temp)
-    }
-
-    function checkCurrentUsage() {
-      if (thermostat.getCurrentUsage() < 18) {
-        $("#usage_display").removeClass("medium");
-        $("#usage_display").addClass("low");
-      } else if (thermostat.getCurrentUsage() < 25) {
-        $("#usage_display").removeClass("low");
-        $("#usage_display").addClass("medium");
-      } else {
-        $("#usage_display").removeClass("medium");
-        $("#usage_display").addClass("high");
-      }
-    }
-  });
-  </script>
+        <div class="col-md-4">
+          <h2>Controls</h2>
+          <button id='increase' class="btn btn-lg btn-block btn-default">Increase</button>
+          <button id='decrease' class="btn  btn-lg btn-block btn-default">Decrease</button>
+          <button id='power_saving' class="btn btn-lg btn-block btn-default">Power saving</button>
+          <button id='reset' class="btn btn-lg btn-block btn-default">Reset</button>
+          <button id='usage_display' class="btn btn-lg btn-block btn-warning disabled">Current Usage</button>
+        </div>
+      </div>
+    </div>
   </body>
 </html>

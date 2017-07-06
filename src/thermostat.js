@@ -1,9 +1,17 @@
 function Thermostat() {
-  this.temp = 20;
-  this.min = 10;
+  this.DEFAULT_TEMP = 20,
+  this.MIN_TEMP = 10,
+  this.MAX_TEMP_POWERSAVE = 25,
+  this.MAX_TEMP_NO_POWERSAVE = 32,
+
+  this.LOW_USAGE_THRESHOLD = 18,
+  this.MEDIUM_USAGE_THRESHOLD = 25,
+
+  this.temp = this.DEFAULT_TEMP,
+  this.min = this.MIN_TEMP,
   this._currentUsage = "medium-usage",
-  this.powerSave = true;
-  this.max = 25;
+  this.powerSave = true,
+  this.max = this.MAX_TEMP_POWERSAVE;
 }
 
 Thermostat.prototype.increase = function () {
@@ -31,20 +39,21 @@ Thermostat.prototype.getCurrentUsage = function() {
 Thermostat.prototype.togglePowerSave = function () {
   this.powerSave = !this.powerSave;
   if (this.powerSave) {
-  this.max = 25;
+  this.max = this.MAX_TEMP_POWERSAVE;
   } else {
-    this.max = 32;
+    this.max = this.MAX_TEMP_NO_POWERSAVE;
   };
 };
 
-Thermostat.prototype.reset = function () {
-  this.temp = 20;
+Thermostat.prototype.resetTemp = function () {
+  this.temp = this.DEFAULT_TEMP;
+  this.setUsage();
 };
 
 Thermostat.prototype.setUsage = function () {
-  if (this.temp < 18) {
+  if (this.temp < this.LOW_USAGE_THRESHOLD) {
     this._currentUsage = "low-usage"
-  } else if (this.temp < 25) {
+  } else if (this.temp < this.MEDIUM_USAGE_THRESHOLD) {
     this._currentUsage = "medium-usage"
   } else {
     this._currentUsage = "high-usage"

@@ -96,7 +96,7 @@ describe("Thermostat", function() {
     });
   });
 
-  describe("#reset", function () {
+  describe("#resetTemp", function () {
     beforeEach(function () {
       for (var i = 20; i > 15; i--) {
         thermostat.decrease();
@@ -104,7 +104,7 @@ describe("Thermostat", function() {
     });
 
     it("changes the temperature to its default value", function () {
-      thermostat.reset();
+      thermostat.resetTemp();
       expect(thermostat.temp).toEqual(20);
     });
   });

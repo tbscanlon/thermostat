@@ -1,0 +1,15 @@
+.high {
+  background-color: red;
+}
+
+.medium {
+  background-color: yellow;
+}
+
+.low {
+  background-color: green;
+}
+
+#temp {
+  font-size: 150pt;
+}
