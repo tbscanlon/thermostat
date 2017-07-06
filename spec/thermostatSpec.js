@@ -30,10 +30,11 @@ describe("Thermostat", function() {
     });
 
     it("throws an error if temperature is at or above the max", function () {
-      for (var i = 20; i < 25; i++) {
+      spyOn(window, 'alert');
+      for (var i = 20; i <= 25; i++) {
         thermostat.increase();
       }
-      expect(function () { thermostat.increase() }).toThrowError("Temperature too high");
+      expect(window.alert).toHaveBeenCalledWith("Temperature too high");
     });
   });
 
@@ -44,10 +45,11 @@ describe("Thermostat", function() {
     });
 
     it("throws an error if temperature is at 10 degrees or below", function () {
-      for (var i = 20; i > 10; i--) {
+      spyOn(window, 'alert');
+      for (var i = 20; i >= 10; i--) {
         thermostat.decrease();
       }
-      expect(function () { thermostat.decrease() }).toThrowError("Temperature too low");
+      expect(window.alert).toHaveBeenCalledWith("Temperature too low")
     });
   });
 

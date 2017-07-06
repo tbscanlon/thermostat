@@ -8,7 +8,6 @@ function Thermostat() {
 Thermostat.prototype.increase = function () {
   if (this.temp >= this.max) {
     alert("Temperature too high");
-    throw new Error("Temperature too high");
   } else {
     this.temp++;
   }
@@ -17,7 +16,6 @@ Thermostat.prototype.increase = function () {
 Thermostat.prototype.decrease = function () {
   if (this.temp <= this.min) {
     alert("Temperature too low");
-    throw new Error("Temperature too low");
   } else {
     this.temp--;
   }
