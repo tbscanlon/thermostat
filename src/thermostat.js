@@ -1,6 +1,4 @@
 function Thermostat() {
-
-  $.get('http://api.openweathermap.org/data/2.5/weather?id=2643743&APPID=d67b6ea31078ccea4bd77846d9569c02');
   this.DEFAULT_TEMP = 20,
   this.MIN_TEMP = 10,
   this.MAX_TEMP_POWERSAVE = 25,

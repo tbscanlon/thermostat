@@ -1,6 +1,13 @@
 $( document ).ready(function() {
   thermostat = new Thermostat();
 
+   $.get('http://api.openweathermap.org/data/2.5/weather?id=2643743&APPID=d67b6ea31078ccea4bd77846d9569c02', function( weather ) {
+    $("#forecast-city").html(weather.name);
+    $("#forecast-country").html(weather.country);
+    $("#forecast-temp").html(weather.main.temp);
+    $("#forecast-outlook").html(weather.weather[0].main);
+  });
+
   $( "#increase" ).click(function( event ) {
     thermostat.increase();
     updateTemp();
