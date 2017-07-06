@@ -1,6 +1,7 @@
 function Thermostat() {
   this.temp = 20;
   this.min = 10;
+  this._currentUsage = "medium-usage",
   this.powerSave = true;
   this.max = 25;
 }
@@ -10,6 +11,7 @@ Thermostat.prototype.increase = function () {
     alert("Temperature too high");
   } else {
     this.temp++;
+    this.setUsage();
   }
 };
 
@@ -18,7 +20,12 @@ Thermostat.prototype.decrease = function () {
     alert("Temperature too low");
   } else {
     this.temp--;
+    this.setUsage();
   }
+};
+
+Thermostat.prototype.getCurrentUsage = function() {
+  return this._currentUsage;
 };
 
 Thermostat.prototype.togglePowerSave = function () {
@@ -34,12 +41,12 @@ Thermostat.prototype.reset = function () {
   this.temp = 20;
 };
 
-Thermostat.prototype.usage = function () {
+Thermostat.prototype.setUsage = function () {
   if (this.temp < 18) {
-    return "low-usage"
+    this._currentUsage = "low-usage"
   } else if (this.temp < 25) {
-    return "medium-usage"
+    this._currentUsage = "medium-usage"
   } else {
-    return "high-usage"
+    this._currentUsage = "high-usage"
   }
 };

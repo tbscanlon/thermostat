@@ -12,6 +12,7 @@
   <button id='decrease'>Decrease</button>
   <button id='power_saving'>Power saving</button>
   <button id='reset'>Reset</button>
+  <button id='usage_display'> </button>
   <script>
   $( document ).ready(function() {
     thermostat = new Thermostat();
@@ -40,6 +41,19 @@
 
     function updateTemp() {
       $( "#temp" ).html(thermostat.temp)
+    }
+
+    function checkCurrentUsage() {
+      if (thermostat.getCurrentUsage() < 18) {
+        $("#usage_display").removeClass("medium");
+        $("#usage_display").addClass("low");
+      } else if (thermostat.getCurrentUsage() < 25) {
+        $("#usage_display").removeClass("low");
+        $("#usage_display").addClass("medium");
+      } else {
+        $("#usage_display").removeClass("medium");
+        $("#usage_display").addClass("high");
+      }
     }
   });
   </script>

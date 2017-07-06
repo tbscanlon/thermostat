@@ -10,6 +10,10 @@ describe("Thermostat", function() {
       expect(thermostat.temp).toEqual(20);
     });
 
+    it("records current energy usage", function(){
+      expect(thermostat._currentUsage).toEqual("medium-usage");
+    });
+
     it("has a minimum temperature", function () {
       expect(thermostat.min).toEqual(10);
     });
@@ -35,6 +39,12 @@ describe("Thermostat", function() {
         thermostat.increase();
       }
       expect(window.alert).toHaveBeenCalledWith("Temperature too high");
+    });
+  });
+
+  describe("#getCurrentUsage", function(){
+    it("will return the current usage", function(){
+      expect(thermostat.getCurrentUsage()).toEqual("medium-usage")
     });
   });
 
@@ -108,13 +118,13 @@ describe("Thermostat", function() {
       });
 
       it("Reports low usage when temp is under 18 degrees", function () {
-        expect(thermostat.usage()).toEqual("low-usage");
+        expect(thermostat.getCurrentUsage()).toEqual("low-usage");
       });
     });
 
     describe("Medium Usage", function () {
       it("Reports medium usage when temp is between 18-25 degrees", function () {
-        expect(thermostat.usage()).toEqual("medium-usage");
+        expect(thermostat.getCurrentUsage()).toEqual("medium-usage");
       });
     });
 
@@ -127,7 +137,7 @@ describe("Thermostat", function() {
       });
 
       it("Reports high usage when temp is over 25 degrees", function () {
-        expect(thermostat.usage()).toEqual("high-usage");
+        expect(thermostat.getCurrentUsage()).toEqual("high-usage");
       });
     });
   });
