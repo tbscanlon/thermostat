@@ -34,6 +34,26 @@ $( document ).ready(function() {
     $( "#temp" ).html(thermostat.temp);
   }
 
+ function createUrl(cityName) {
+   return "http://api.openweathermap.org/data/2.5/weather?" + cityName + "&APPID=d67b6ea31078ccea4bd77846d9569c02"
+ }
+
+ var url;
+ var cityName;
+
+ $( "#form" ).on( "submit", function( event ) {
+   event.preventDefault();
+   url = createUrl($( this ).serialize());
+   $.get(url, function( weather ) {
+    $("#forecast-city").html(weather.name);
+    $("#forecast-country").html(weather.country);
+    $("#forecast-temp").html(weather.main.temp);
+    $("#forecast-outlook").html(weather.weather[0].main);
+  });
+
+ });
+
+
   function checkCurrentUsage() {
     if (thermostat.getCurrentUsage() == "low-usage") {
       $("#usage_display").removeClass("btn-warning");
