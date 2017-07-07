@@ -8,6 +8,11 @@ $( document ).ready(function() {
     $("#forecast-outlook").html(weather.weather[0].main);
   });
 
+  $.get('http://localhost:4567/temp', function ( data ) {
+    $("#temp").html(data.temp);
+    $("#save_power_save").html(data.power_save);
+  });
+
   $( "#increase" ).click(function( event ) {
     thermostat.increase();
     updateTemp();
